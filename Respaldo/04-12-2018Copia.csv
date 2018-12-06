@@ -1,0 +1,7 @@
+ID ; Nombre(s) ; Apellidos ; Cedula de identidad ; Numero del INSS ; Fecha de ingreso ; Cargo ; Area ; Dias trabajados ; Salario bruto ; Salario  ; Cantidad horas extras ; Monto horas extras ; Dias de vacaciones ; Monto vacaciones ; Subsidio INSS ; Aguinaldo ; Antiguedad ; Feriados ; Total ingresos ; INSS  ; IR ; Otros descuentos ; Anticipo salarial ; Total deducciones ; Total a pagar ; 
+0 ; a ; a ; 3 ; 4 ; 04-12-2018 ; 
+1 ; b ; b ; 5 ; 6 ; 04-12-2018 ; 
+r ; r ; 30 ; 1000 ; 
+e ; e ; 15 ; 2000 ; 
+1000 ; 4 ; 33.3333 ; 5 ; 166.667 ; 1000 ; 3 ; 50 ; 3 ; 200 ; 133.333 ; -11.1111 ; 133.333 ; 1288.89 ; 333.333 ; -22.2222 ; 133.333 ; 1494.44 ; 62.5 ; 0 ; 3 ; 2 ; 67.5 ; 1221.39 ; 
+125 ; 0 ; 5 ; 6 ; 136 ; 1358.44 ; 

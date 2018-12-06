@@ -1,0 +1,12 @@
+1-ingreso personas + datos que varian(ingresar registro de empleados)
+
+2-ingresar datos a calcular(leer el archivo maestro para ubicar los datos staticos, luego pedir al usuario que vuelva a ingresar el salario cantidad de dias trabajados etc)
+
+3-eliminar registro(¿eliminar todo el empleado o solo algun registro en especifico?)
+
+4-modificar registro(¿modificar un registro en especifico "solo los que son con lectura" o modificar desde el inicio de los datos variables?)
+
+5-listado de archivos que en realidad tendria que ejecutarce dentro del reporte en excel para guiar al usuario en la eleccion del archivo a reportar
+
+
+7-salir

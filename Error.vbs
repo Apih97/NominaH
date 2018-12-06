@@ -1,0 +1,1 @@
+x=msgbox("NO SE PERMITE NUMEROS" ,0+16, "ERROR")  
