@@ -1,12 +1,2 @@
-ID ; Nombre(s) ; Apellidos ; Cedula de identidad ; Numero del INSS ; Fecha de ingreso ; 
-2 ; alejandro ; ludena ; 4 ; 5 ; 04-12-2018 ; 
-3 ; mario ; salamanca ; 123 ; 123 ; 04-12-2018 ; 
-10 ; alejandro ; salamanca ; 123 ; 123 ; 04-12-2018 ; 
-4 ; irt ; ewr ; 23342 ; 2355 ; 04-12-2018 ; 
-5 ; o ; o ; 3 ; 2 ; 04-12-2018 ; 
-1 ; alejandro ; salamanca ; 123 ; 123 ; 04-12-2018 ; 
-1 ; alejandro ; salamanca ; 123 ; 123 ; 04-12-2018 ; 
-2 ; mario ; salmanca ; 123 ; 123 ; 04-12-2018 ; 
-3 ; a ; a ; 2 ; 2 ; 04-12-2018 ; 
-1 ; mario ; salamanca ; 123 ; 123 ; 04-12-2018 ; 
-2 ; alejand ; e ; 3 ; 4 ; 04-12-2018 ; 
+ID;Nombre(s);Apellidos;Cedula de identidad;Numero del INSS;Fecha de ingreso;
+0;Aldair;Peralta;281-180197-0000F;1477;05-12-2018;

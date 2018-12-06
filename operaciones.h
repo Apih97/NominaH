@@ -9,7 +9,6 @@
 #include <math.h>
 #include <ctime>
 
-
 int opcion;
 
 struct deducciones{
@@ -37,7 +36,6 @@ struct ingresos{
 	struct deducciones aux1;
 };
 
-
 struct principal{
 
 	int llave;
@@ -57,6 +55,23 @@ struct principal{
 	struct ingresos aux2;
 
 }dat[100],datoMod;
+
+	string aux=".csv";
+	string aux2=".txt";
+	string carp="Variantes\\";
+	string carp2="Respaldo\\";
+	string carp3="Excel\\";
+	string nombre;
+	string maestros;
+	string Excel;
+    string variable;
+    string nuevocopia;
+    string backup="Copia";
+    bool valido=true;
+    int j;
+    int longitud;
+
+
 
 using namespace std;
 
@@ -297,48 +312,80 @@ float aPagar(int i){
 		return dat[i].aux2.aux1.PagaTotal;
 }
 
-
+string nuevo=carp+nombre+aux2;//carpeta variantes +nombre del archivo con la fecha
 void EscribirDatosMaestro(){
 
 	  ofstream maestro;
+	  ofstream variantes;
 	  maestro.open("Principal//Datos maestros.txt",ios::out);//archivo estatico o maestro(datos que no se van a mover)
-	  if(maestro.fail()){
+	  variantes.open(nuevo.c_str(),ios::out);
+	  if(maestro.fail() || variantes.fail()){
 	 	system("cls");
-	 	gotoxy(50,50);cout<<"No se pudo abrir el archivo"<<endl;
+	 	gotoxy(50,50);cout<<"No se pudo abrir el archivo ningun archivo"<<endl;
 	 	exit(1);
 		}
-
-	  maestro<<"ID"<<" ; ";
-	  maestro<<"Nombre(s)"<<" ; ";
-	  maestro<<"Apellidos"<<" ; ";
-	  maestro<<"Cedula de identidad"<<" ; ";
-    maestro<<"Numero del INSS"<<" ; ";
-    maestro<<"Fecha de ingreso"<<" ; "<<endl;
+      maestro<<"ID"<<";";
+	  maestro<<"Nombre(s)"<<";";
+	  maestro<<"Apellidos"<<";";
+	  maestro<<"Cedula de identidad"<<";";
+      maestro<<"Numero del INSS"<<";";
+      maestro<<"Fecha de ingreso"<<";";
+      variantes<<"Cargo"<<";";
+      variantes<<"Area"<<";";
+	  variantes<<"Dias trabajados"<<";";
+	  variantes<<"Salario bruto"<<";";
+	  variantes<<"Salario "<<";";
+	  variantes<<"Cantidad horas extras"<<";";
+	  variantes<<"Monto horas extras"<<";";
+	  variantes<<"Dias de vacaciones"<<";";
+	  variantes<<"Monto vacaciones"<<";";
+	  variantes<<"Subsidio INSS"<<";";
+	  variantes<<"Aguinaldo"<<";";
+	  variantes<<"Antiguedad"<<";";
+	  variantes<<"Feriados"<<";";
+	  variantes<<"Total ingresos"<<";";
+	  variantes<<"INSS "<<";";
+	  variantes<<"IR"<<";";
+	  variantes<<"Otros descuentos"<<";";
+	  variantes<<"Anticipo salarial"<<";";
+	  variantes<<"Total deducciones"<<";";
+	  variantes<<"Total a pagar"<<";"<<endl;
 
    	for(int i=0;i<100;i++){
 
         if (dat[i].llave>=0){
 
+            maestro<<"\n"<<dat[i].llave<<";";
+            maestro<<dat[i].nombre<<";";
+			maestro<<dat[i].apellido<<";";
+			maestro<<dat[i].cedula<<";";
+			maestro<<dat[i].numinss<<";";
+			maestro<<dat[i].fechaing<<";";
+			variantes<<dat[i].cargo<<";";
+			variantes<<dat[i].area<<";";
+			variantes<<dat[i].dias<<";";
+            variantes<<dat[i].aux2.salariobruto<<";";
+            variantes<<dat[i].aux2.salarioing<<";";
+            variantes<<dat[i].aux2.horascantidad<<";";
+            variantes<<dat[i].aux2.horasmonto<<";";
+            variantes<<dat[i].aux2.vacacionesdias<<";";
+            variantes<<dat[i].aux2.vacacionestotal<<";";
+            variantes<<dat[i].aux2.subsidio<<";";
+            variantes<<dat[i].aux2.aguinaldo<<";";
+            variantes<<dat[i].aux2.antiguedad<<";";
+            variantes<<dat[i].aux2.feriados<<";";
+            variantes<<dat[i].aux2.totalingresos<<";";
+            variantes<<dat[i].aux2.aux1.INSS_deu<<";";
+            variantes<<dat[i].aux2.aux1.IR_deu<<";";
+            variantes<<dat[i].aux2.aux1.otrosDescuentos<<";";
+            variantes<<dat[i].aux2.aux1.anticiposS<<";";
+            variantes<<dat[i].aux2.aux1.totaldeducciones<<";";
+            variantes<<dat[i].aux2.aux1.PagaTotal<<";"<<endl;
 
-			 maestro<<dat[i].llave<<" ; ";
-
-			    maestro<<dat[i].nombre<<" ; ";
-			 maestro<<dat[i].apellido<<" ; ";
-			 maestro<<dat[i].cedula<<" ; ";
-			 maestro<<dat[i].numinss<<" ; ";
-			 maestro<<dat[i].fechaing<<" ; "<<endl;
-
-	 }
-
-
-
-
-        }
-
+            }
+    }
 	  maestro.close();
-
-
-
+	  variantes.close();
 }
 
 

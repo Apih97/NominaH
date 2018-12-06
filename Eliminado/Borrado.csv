@@ -1,8 +1,2 @@
-Nombre ; Apellido:  ; Cedula:  ; Numero INSS:  ; Fecha de ingreso:  ; Cargo:  ; Area:  ; Salario:  ; 
-Jack ; ffr ; 123456 ; 12345 ; 03-12-2018 ; tester ; it ; 20000 ; 
-Nombre ; Apellido:  ; Cedula:  ; Numero INSS:  ; Fecha de ingreso:  ; Cargo:  ; Area:  ; Salario:  ; 
-a ; a ; 123 ; 123 ; 04-12-2018 ; c ; c ; 1000 ; 
-Nombre ; Apellido:  ; Cedula:  ; Numero INSS:  ; Fecha de ingreso:  ; Cargo:  ; Area:  ; Salario:  ; 
-a ; a ; 3 ; 4 ; 04-12-2018 ; r ; r ; 1000 ; 
-Nombre ; Apellido:  ; Cedula:  ; Numero INSS:  ; Fecha de ingreso:  ; Cargo:  ; Area:  ; Salario:  ; 
-michelle ; roblero ; 443 ; 3123 ; 04-12-2018 ;  ;  ; 0 ; 
+Llave;Nombre;Apellido: ;Cedula: ;Numero INSS: ;Fecha de ingreso: ;Fecha despido: ;Cargo: ;Area: ;Salario: ;
+-1;Inocente;Hernandez;147-141295-4114A;5878;05-12-2018;5-11-2020;Jefe;IT;20000;

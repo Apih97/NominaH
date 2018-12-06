@@ -1,0 +1,2 @@
+Cargo;Area;Dias trabajados;Salario bruto;Salario ;Cantidad horas extras;Monto horas extras;Dias de vacaciones;Monto vacaciones;Subsidio INSS;Aguinaldo;Antiguedad;Feriados;Total ingresos;INSS ;IR;Otros descuentos;Anticipo salarial;Total deducciones;Total a pagar;
+Gerente;IT;30;30000;30000;3;750;2;2000;0;-416.667;0;4000;34333.3;1875;3541.67;0;0;5416.67;28916.7;

@@ -13,7 +13,7 @@
 #define TECLA_ABAJO 80 // se define mediante el codigo ASCII la tecla abajo
 #define ENTER 13 // se define mediante el codigo ASCII la tecla enter,,
 
-int indemnizar();
+void quitar();
 void inicio();
 void usuario();
 void nomina();
@@ -37,21 +37,7 @@ float aPagar(int q11);
 
 using namespace std;
 
-	string aux=".csv";
-	string aux2=".txt";
-	string carp="Variantes\\";
-	string carp2="Respaldo\\";
-	string carp3="Excel\\";
-	string nombre;
-	string nuevo;
-	string maestros;
-	string Excel;
-    string variable;
-    string nuevocopia;
-    string backup="Copia";
-    bool valido=true;
-    int j;
-    int longitud;
+
 
 int main(){
 
@@ -105,9 +91,98 @@ void lecturaDatosMaestro(){
 	 }
 
 	  maestro.close();
-
 }
+void lecturaDatosVariantes(){
 
+	  ifstream variantes;
+	  variantes.open(nuevo.c_str(),ios::in);
+	  if(variantes.fail()){
+	 	system("cls");
+	 	gotoxy(50,50);cout<<"No se pudo abrir el archivo variantes"<<endl;
+	 	return;
+		}
+
+    int i=-1; //primera linea encabezado
+    string linea;
+	while ( getline(variantes,linea,'\n') ){
+         int llave, dias, salariobruto, salarioing, horascantidad, horasmonto, vacacionesdias, vacacionestotal, subsidiodia,
+                aguinaldo, antiguedad, feriados, totalingresos, INSS_deu, IR_deu, otrosDescuentos, anticiposS, totaldeducciones,
+                PagaTotal;
+         istringstream lineastream(linea);
+         string llavestr, cargo, area, diasstr, salariobrutostr, salarioingstr, horascantidadstr, horasmontostr, vacacionesdiasstr,
+                vacacionestotalstr, subsidiodiastr, aguinaldostr, antiguedadstr, feriadosstr, totalingresosstr, INSS_deustr, IR_deustr,
+                otrosDescuentosstr, anticiposSstr, totaldeduccionesstr, PagaTotalstr;
+
+         getline(lineastream,llavestr,';');
+         getline(lineastream,cargo,';');
+         getline(lineastream,area,';');
+         getline(lineastream,diasstr,';');              //a int
+         getline(lineastream,salariobrutostr,';');
+         getline(lineastream,salarioingstr,';');
+         getline(lineastream,horascantidadstr,';');
+         getline(lineastream,horasmontostr,';');
+         getline(lineastream,vacacionesdiasstr,';');
+         getline(lineastream,vacacionestotalstr,';');
+         getline(lineastream,subsidiodiastr,';');
+         getline(lineastream,aguinaldostr,';');
+         getline(lineastream,antiguedadstr,';');
+         getline(lineastream,feriadosstr,';');
+         getline(lineastream,totalingresosstr,';');
+         getline(lineastream,INSS_deustr,';');
+         getline(lineastream,IR_deustr,';');
+         getline(lineastream,otrosDescuentosstr,';');
+         getline(lineastream,anticiposSstr,';');
+         getline(lineastream,totaldeduccionesstr,';');
+         lineastream>>PagaTotalstr;
+
+         llave = atoi(llavestr.c_str());
+         dias = atoi(diasstr.c_str());
+         salariobruto = atoi(salariobrutostr.c_str());
+         salarioing = atoi(salarioingstr.c_str());
+         horascantidad = atoi(horascantidadstr.c_str());
+         horasmonto = atoi(horasmontostr.c_str());
+         vacacionesdias = atoi(vacacionesdiasstr.c_str());
+         vacacionestotal = atoi(vacacionestotalstr.c_str());
+         subsidiodia = atoi(subsidiodiastr.c_str());
+         aguinaldo = atoi(aguinaldostr.c_str());
+         antiguedad = atoi(antiguedadstr.c_str());
+         feriados = atoi(feriadosstr.c_str());
+         totalingresos = atoi(totalingresosstr.c_str());
+         INSS_deu = atoi(INSS_deustr.c_str());
+         IR_deu = atoi(IR_deustr.c_str());
+         otrosDescuentos = atoi(otrosDescuentosstr.c_str());
+         anticiposS = atoi(anticiposSstr.c_str());
+         totaldeducciones = atoi(totaldeduccionesstr.c_str());
+         PagaTotal = atoi(PagaTotalstr.c_str());
+
+         if (i>=0){
+            dat[i].llave=llave;
+            dat[i].cargo= cargo;
+			dat[i].area=area;
+			dat[i].dias=dias;
+            dat[i].aux2.salariobruto=salariobruto;
+            dat[i].aux2.salarioing= salarioing;
+            dat[i].aux2.horascantidad= horascantidad;
+            dat[i].aux2.horasmonto= horasmonto;
+            dat[i].aux2.vacacionesdias= vacacionesdias;
+            dat[i].aux2.vacacionestotal= vacacionestotal;
+            dat[i].aux2.subsidio= subsidiodia;
+            dat[i].aux2.aguinaldo = aguinaldo;
+            dat[i].aux2.antiguedad = antiguedad;
+            dat[i].aux2.feriados= feriados;
+            dat[i].aux2.totalingresos= totalingresos;
+            dat[i].aux2.aux1.INSS_deu=INSS_deu;
+            dat[i].aux2.aux1.IR_deu= IR_deu;
+            dat[i].aux2.aux1.otrosDescuentos= otrosDescuentos;
+            dat[i].aux2.aux1.anticiposS = anticiposS;
+            dat[i].aux2.aux1.totaldeducciones = totaldeducciones;
+            dat[i].aux2.aux1.PagaTotal = PagaTotal;
+
+         }
+        i++;
+	 }
+	  variantes.close();
+}
 void usuario(){
 
 	string p,u;
@@ -148,6 +223,7 @@ void usuario(){
 		system("cls");
 		system("Loading.exe");//llama al ejecutable que alamacena el loading screen
 		lecturaDatosMaestro();
+		lecturaDatosVariantes();
 		principal();
 	}
 
@@ -439,7 +515,6 @@ void nomina (){
 
 	auxiliar();
 
-
 	  gotoxy(90,10);cout<<"Cargo";
 
 	  gotoxy(120,10);cout<<"Area";
@@ -520,9 +595,9 @@ void nomina (){
 			  }while(dat[i].aux2.salariobruto<=0);
 
 
-			variantes<<dat[i].aux2.salariobruto<<" ; "<<endl;
-      		copia<<dat[i].aux2.salariobruto<<" ; "<<endl;
-      		excel<<dat[i].aux2.salariobruto<<" ; "<<endl;
+			variantes<<dat[i].aux2.salariobruto<<";"<<endl;
+      		copia<<dat[i].aux2.salariobruto<<";"<<endl;
+      		excel<<dat[i].aux2.salariobruto<<";"<<endl;
 
       		fflush(stdin);//limpiar buffer
 
@@ -817,7 +892,7 @@ void principal(){
 
 
 	  	case 4:{
-            indemnizar();
+            quitar();
 	  		//ShellExecute(0,"open","Eliminar.exe",NULL,NULL,1);
 			break;
 
@@ -830,13 +905,11 @@ void principal(){
 			break;
 
 		}
-
 		case 6:{
 			system("ReporteEx.exe");
 			break;
 
 		}
-
 		case 7:{
 			system("cls");
 			cout<<"Salio del programa"<<endl;
@@ -844,10 +917,8 @@ void principal(){
 			system("pause>null");
 			break;
 		}
-
 	   }
 	}while(frecuencia);
-
 }
 
 int menu(const char titulo[],const char*opciones[],int x){
@@ -944,9 +1015,7 @@ void auxiliar(){
 
 }
 struct datos{
-	int diaInicio, mesInicio, anioInicio;
-    std::string fechaingreso;
-	float diaDesp, mesDesp, anioDesp;
+	int diaDesp, mesDesp, anioDesp, fechadespido;
 	int mesBase = 30, anioBase = 360;
 	float totalInicio, totalActual;
 	int TotalDias,cantidadAnios, cantidadMeses, CantidadDias;
@@ -958,14 +1027,6 @@ int DespInjust();
 int DespJust();
 int calculo();
 int menuIn();
-void quitar();
-
-indemnizar(){
-
-    quitar();
-    menuIn();
-    calculo();
-}
 
 void quitar(){
 
@@ -977,8 +1038,6 @@ void quitar(){
                 cout<<"clave : "<<dat[i].llave<<" Nombre: "<<dat[i].nombre<<endl;
         }
     }
-
-
     int indiceParaEliminar=-1;
     do{
         cout<<"Introdusca la clave de la persona a eliminar"<<endl;
@@ -991,17 +1050,52 @@ void quitar(){
                 }
             }
         }
-
     }while(indiceParaEliminar== -1);
 
     system("cls");
     cout<<"Nombre: "<<dat[indiceParaEliminar].nombre<<endl;
-    cout<<"Apellido: "<<dat[indiceParaEliminar].apellido<<endl;
+    cout<<"Cargo:"<<dat[indiceParaEliminar].cargo<<endl;
+    cout<<"Area: "<<dat[indiceParaEliminar].area<<endl;
+    cout<<"Salario:"<<dat[indiceParaEliminar].aux2.salariobruto<<endl;
     cout <<"Esta seguro? (s/n)" << endl;
     char c;
     cin >> c;
     if (c!='s')
         return;
+
+    dat[indiceParaEliminar].anioing=dat[indiceParaEliminar].fechaing.substr(6,4);//años
+	dat[indiceParaEliminar].mesing=dat[indiceParaEliminar].fechaing.substr(3,2);//meses
+	dat[indiceParaEliminar].diasing=dat[indiceParaEliminar].fechaing.substr(0,2);//dias
+
+    int diaIngreso = atoi(dat[indiceParaEliminar].diasing.c_str());
+    int MesIngreso = atoi(dat[indiceParaEliminar].mesing.c_str());
+    int AnioIngreso = atoi(dat[indiceParaEliminar].anioing.c_str());
+
+    cout<<"Calcular anios y mes para"<<dat[indiceParaEliminar].nombre<<endl;
+	cout<<"Dia de ingreso: "; cout<<dat[indiceParaEliminar].diasing<<endl;
+	cout<<"Mes de ingreso: "; cout<<dat[indiceParaEliminar].mesing<<endl;
+	cout<<"Año de ingreso: "; cout<<dat[indiceParaEliminar].anioing<<endl;
+	cout<<"------------------------------------\n";
+	cout<<"Dia de salida: "; cin>>ant[indiceParaEliminar].diaDesp;
+	cout<<"Mes de salida: "; cin>>ant[indiceParaEliminar].mesDesp;
+	cout<<"Año de salida: "; cin>>ant[indiceParaEliminar].anioDesp;
+	cout<<"------------------------------------\n";
+
+	ant[indiceParaEliminar].totalInicio = AnioIngreso * ant[indiceParaEliminar].anioBase + MesIngreso * ant[indiceParaEliminar].mesBase + diaIngreso;
+	ant[indiceParaEliminar].totalActual = ant[indiceParaEliminar].anioDesp * ant[indiceParaEliminar].anioBase + ant[indiceParaEliminar].mesDesp * ant[indiceParaEliminar].mesBase + ant[indiceParaEliminar].diaDesp;
+	ant[indiceParaEliminar].TotalDias = ant[indiceParaEliminar].totalActual - ant[indiceParaEliminar].totalInicio;
+    ant[indiceParaEliminar].cantidadAnios = ant[indiceParaEliminar].TotalDias/ant[indiceParaEliminar].anioBase;
+    ant[indiceParaEliminar].cantidadMeses = (ant[indiceParaEliminar].TotalDias-ant[indiceParaEliminar].cantidadAnios*ant[indiceParaEliminar].anioBase)/ant[indiceParaEliminar].mesBase;
+    ant[indiceParaEliminar].CantidadDias = ant[indiceParaEliminar].TotalDias-(ant[indiceParaEliminar].cantidadAnios*ant[indiceParaEliminar].anioBase+ant[indiceParaEliminar].cantidadMeses*ant[indiceParaEliminar].mesBase);
+    Sleep(1000);
+
+    string diaDespido= to_string(ant[indiceParaEliminar].diaDesp);
+    string mesdespido= to_string(ant[indiceParaEliminar].mesDesp);
+    string aniodespido= to_string(ant[indiceParaEliminar].anioDesp);
+
+    cout<<ant[indiceParaEliminar].cantidadAnios<<" Anios, "<<ant[indiceParaEliminar].cantidadMeses<<" meses, "<<endl;
+    system("pause");
+    system("cls");
 
     dat[indiceParaEliminar].llave= -1;
 
@@ -1010,203 +1104,35 @@ void quitar(){
     mkdir("Eliminado");
     borrado.open("Eliminado//Borrado.csv",ios::app);
 
-    borrado<<"Nombre"<<" ; ";
-    borrado<<"Apellido: "<<" ; ";
-    borrado<<"Cedula: "<<" ; ";
-    borrado<<"Numero INSS: "<<" ; ";
-    borrado<<"Fecha de ingreso: "<<" ; ";
-    borrado<<"Cargo: "<<" ; ";
-    borrado<<"Area: "<<" ; ";
-    borrado<<"Salario: "<<" ; "<<endl;
-    borrado<<dat[indiceParaEliminar].nombre<<" ; ";
-    borrado<<dat[indiceParaEliminar].apellido<<" ; ";
-    borrado<<dat[indiceParaEliminar].cedula<<" ; ";
-    borrado<<dat[indiceParaEliminar].numinss<<" ; ";
-    borrado<<dat[indiceParaEliminar].fechaing<<" ; ";
-    borrado<<dat[indiceParaEliminar].cargo<<" ; ";
-    borrado<<dat[indiceParaEliminar].area<<" ; ";
-    borrado<<dat[indiceParaEliminar].aux2.salariobruto<<" ; "<<endl;
+    borrado<<"Llave"<<";";
+    borrado<<"Nombre"<<";";
+    borrado<<"Apellido: "<<";";
+    borrado<<"Cedula: "<<";";
+    borrado<<"Numero INSS: "<<";";
+    borrado<<"Fecha de ingreso: "<<";";
+    borrado<<"Fecha despido: "<<";";
+    borrado<<"Cargo: "<<";";
+    borrado<<"Area: "<<";";
+    borrado<<"Salario: "<<";"<<endl;
+    borrado<<dat[indiceParaEliminar].llave<<";";
+    borrado<<dat[indiceParaEliminar].nombre<<";";
+    borrado<<dat[indiceParaEliminar].apellido<<";";
+    borrado<<dat[indiceParaEliminar].cedula<<";";
+    borrado<<dat[indiceParaEliminar].numinss<<";";
+    borrado<<dat[indiceParaEliminar].fechaing<<";";
+    borrado<<diaDespido<<"-"<<mesdespido<<"-"<<aniodespido<<";";
+    borrado<<dat[indiceParaEliminar].cargo<<";";
+    borrado<<dat[indiceParaEliminar].area<<";";
+    borrado<<dat[indiceParaEliminar].aux2.salariobruto<<";"<<endl;
 
     EscribirDatosMaestro();
 
-    Sleep(3000);
+    Sleep(1000);
     cout<<"Registro eliminado"<<endl;
+    Sleep(1000);
     system("cls");
     borrado.close();
 
-	remove("Temporal//25-11-2018"); //eliminar temporal, se debe capturar el nombre del archivo automaticamente
 	system("pause > 0");
 	system("cls");
 }
-
-menuIn(){
-
-int opcion;
-    do{
-        cout << "Antiguedad" << endl;
-        cout << "1- Articulo 41" << endl;
-        cout << "2- Despido injustificado" << endl;
-        cout << "3- Despido justificado" << endl;
-        cout << "4- Renuncia" << endl;
-        cout << "0- Salir" << endl;
-        cout << "Ingresar Opcion: ";
-        cin >> opcion;
-
-        switch (opcion)        {
-        case 1:
-            system("cls");
-            articulo();
-            system("cls");
-            break;
-
-        case 2:
-            system("cls");
-            DespInjust();
-            system("cls");
-            break;
-
-        case 3:
-            system("cls");
-            DespJust();
-            system("cls");
-            break;
-
-        case 4:
-            system("cls");
-            DespInjust();
-            system("cls");
-            break;
-
-        case 0:
-            system("pause");
-            system("exit");
-            break;
-
-        default:
-            system("cls");
-            cout <<"Ingrese una opcion valida."<< endl;
-            system("pause");
-            system("cls");
-            break;
-        }
-}
-    while(opcion!=0);
-}
-
-calculo(){
-    for(int i=0; i<1; i++){
-    cout<<"Calcular dias, anios y mes\n\n";
-	cout<<"Dia de ingreso: "; cin>>ant[i].diaInicio;
-	cout<<"Mes de ingreso: "; cin>>ant[i].mesInicio;
-	cout<<"Año de ingreso: "; cin>>ant[i].anioInicio;
-	cout<<"------------------------------------\n";
-	cout<<"Dia de salida: "; cin>>ant[i].diaDesp;
-	cout<<"Mes de salida: "; cin>>ant[i].mesDesp;
-	cout<<"Año de salida: "; cin>>ant[i].anioDesp;
-	cout<<"------------------------------------\n";
-
-	ant[i].totalInicio = ant[i].anioInicio * ant[i].anioBase + ant[i].mesInicio * ant[i].mesBase + ant[i].diaInicio;
-	ant[i].totalActual = ant[i].anioDesp * ant[i].anioBase + ant[i].mesDesp * ant[i].mesBase + ant[i].diaDesp;
-	ant[i].TotalDias = ant[i].totalActual - ant[i].totalInicio;
-
-    ant[i].cantidadAnios = ant[i].TotalDias/ant[i].anioBase;
-    ant[i].cantidadMeses = (ant[i].TotalDias-ant[i].cantidadAnios*ant[i].anioBase)/ant[i].mesBase;
-    Sleep(1000);
-    cout<<ant[i].cantidadAnios<<" Anios, "<<ant[i].cantidadMeses<<" meses, "<<endl;
-    system("pause");
-    system("cls");
-    }
-}
-
-articulo(){
-    for(int i=0; i<1; i++){
-
-    int cansal;
-    cout<<"Cuantos salarios se le debe?"; cin>>cansal;
-
-    int salarios[cansal];
-    int largo = sizeof(salarios) / sizeof(salarios[0]);
-    for(int i=0; i<largo; i++){
-    cout<<"Ingresar el salario N# ["<<i+1<<"]: ";cin>>salarios[i];
-    }
-    Sleep(1000);
-    cout << "\nLos salarios ingresados son: \n";
-    for (int i=0; i<largo; i++){
-    cout<<"\nSalario # ["<<i<<"] ="<<salarios[i];
-    ant[i].indemnizacion += salarios[i];
-    ant[i].indemnizacion = dat[i].aux2.antiguedad;
-    }
-    Sleep(1000);
-    cout<<"\nLa imdemnizacion es de: "<<dat[i].aux2.antiguedad<<endl;
-    system("pause>0");
-
-    }
-}
-DespInjust(){
-
-for(int i=0; i<1; i++){
-
-cout<<ant[i].cantidadAnios<<" Anios, "<<ant[i].cantidadMeses<<" meses, "<<endl;
-cout<<"------------------------------------\n";
-
-    int salario = dat[i].aux2.salariobruto;
-    int tope = salario * 5;
-if(ant[i].cantidadAnios = 0){
-
-    int mesadia = ant[i].cantidadMeses * ant[i].mesBase;
-    float valorMes = (salario * mesadia)/ant[i].anioBase;
-
-    ant[i].indemnizacion = valorMes;
-    ant[i].indemnizacion = dat[i].aux2.antiguedad;
-    cout<<"La indemnizacion es de: "<<dat[i].aux2.antiguedad<<endl;
-}
-if(ant[i].cantidadAnios < 3){
-
-    float valorAnio = salario*ant[i].cantidadAnios; //bien
-    int mesadia = ant[i].cantidadMeses * ant[i].mesBase;
-    float valorMes = (salario * mesadia)/ant[i].anioBase;
-
-    ant[i].indemnizacion = valorMes + valorAnio;
-    ant[i].indemnizacion = dat[i].aux2.antiguedad;
-    cout<<"La indemnizacion es de: "<<dat[i].aux2.antiguedad<<endl;
-}
-
-if(ant[i].cantidadAnios < 6 && ant[i].cantidadAnios > 3){
-    cout<<"Menor a 6"<<endl;
-    Sleep(1000);
-    float valorAnio = salario*3;
-    float salarioDiario = salario/ant[i].mesBase;
-    int mesadia = ant[i].cantidadMeses * ant[i].mesBase;
-    float valorMes = mesadia/ant[i].anioBase;
-    float anioextra = salarioDiario * (20 *(6 - ant[i].cantidadAnios));
-    float Justotal = valorAnio + valorMes + anioextra;
-
-    if(Justotal > tope){
-        dat[i].aux2.antiguedad = tope;
-        cout<<"La indemnizacion es de: "<<tope<<endl;
-    }else{
-
-    dat[i].aux2.antiguedad = Justotal;
-    cout<<"La indemnizacion es de: "<<Justotal<<endl;
-    }
-}
-   if(ant[i].cantidadAnios > 5){
-
-        dat[i].aux2.antiguedad = tope;
-        cout<<"La indemnizacion es de: "<<tope<<endl;
-   }
-}
-system("pause");
-}
-
-DespJust(){
-for(int i=0; i<1; i++){
-
-dat[i].aux2.antiguedad = 0;
-cout<<"Pierde el derecho a indemnizacion "<<dat[i].aux2.antiguedad<<endl;
- }
- system("pause");
-}
-
-
-
